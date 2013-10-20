@@ -1,81 +1,89 @@
 ﻿%%{
 	machine OrderByParser;
 
-	action beginPathToken {
+	action beginToken {
 		buffer.BeginBuffer(fpc);
+		Log("Begin token");
+	}
+
+	action recogniseTokenProperty{
 		buffer.SetTokenType(TokenType.PropertyOrField);
-		Log("path");
+		Log("Recognise token property");
 	}
 
-	action beginDirectionToken {
-		buffer.BeginBuffer(fpc);
+	action recogniseTokenMethod{
+		buffer.SetTokenType(TokenType.Method);
+		Log("Recognise token method");
+	}
+
+	action recogniseTokenDirection {
 		buffer.SetTokenType(TokenType.Literal);
-		Log("dir");
+		Log("Recognise Token direction");
 	}
 
-	action parseToken {
+	action readChar{
 		buffer.Append(fc);
 		Log(fc);
 	}
 
 	action endPathToken{
 		pathTokenBuffer.Enqueue(buffer.EndBuffer(fpc));
-		Log("end path");
-	}
-
-	action raisePathToMethod{
-		buffer.SetTokenType(TokenType.Method);
-		Log("switch method");
+		Log("End path token");
 	}
 
 	action endDirectionToken{
 		directionTokenBuffer=buffer.EndBuffer(fpc);
-		Log("end dir");
+		Log("End direction token");
 	}
 
 	action beginPathExpression {
 		directionTokenBuffer=null;
 		pathTokenBuffer=new Queue<Token>();
-		Log("begin path exp");
+		Log("Begin path expression");
 	}
 
 	action endPathExpression {
 		tokenCollection.Append(pathTokenBuffer,directionTokenBuffer??new Token("ASC",TokenType.Literal,-1,-1));
-		Log("end path exp");
+		Log("End path expression");
 	}
 
-	action generalError	{
-		errSyntex=buffer.Current();
-		errSyntex=data.Substring(buffer.StartOffset,te-buffer.StartOffset);
-		throw new SyntexException(te,"语法错误。位于列{0}, {1}附近",te,errSyntex);
-	}
+	leftParenthesis='(';
 
+	rightParenthesis=')';
 
-	methodToken='()' >raisePathToMethod;
-
-	propertyToken='.'^(space|/[\.\,\(\)]/)+  
-					>beginPathToken 
-					$parseToken 
-					methodToken?
+	propertyToken='.'
+					>beginToken
+				  ^(space|/[\.\,\(\)]/)+  
+					>recogniseTokenProperty
+					$readChar 
 					%endPathToken ;
-	property = /it/i propertyToken+ 
-					>beginPathExpression; 
 
-	direction= (/asc/i|/desc/i) 
-					>beginDirectionToken 
-					$parseToken 
+	methodToken='.' 
+					>beginToken 
+				^(space|/[\.\,\(\)]/)+$readChar leftParenthesis rightParenthesis 
+					>recogniseTokenMethod
+					%endPathToken;
+
+	selfToken=zlen 
+					>beginToken >recogniseTokenProperty
+					>endPathToken;
+
+	directionToken= (/asc/i|/desc/i) 
+					>beginToken 
+					>recogniseTokenDirection
+					$readChar 
 					%endDirectionToken;
 
-	expression =space* property (space+ direction? space*)* 
+	pathExpression =/it/i 
+					@beginPathExpression
+					((propertyToken|methodToken)*|selfToken) (space+ directionToken)?
 					%endPathExpression;
 
-	expressionSep=space* ',' space*;
 
 	main:=|*
-		expression;
-		expressionSep ;
-		any=>generalError;
-	*|;
+		pathExpression (',' pathExpression)*;
+		space*;
+		*|;
 
 }%%
 
@@ -83,7 +91,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LiteralLinq.Expression.Compiler.OrderBy
 {
@@ -108,10 +115,9 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
 	        return tokenCollection;
 	    }
 
-	    [System.Diagnostics.Conditional("DEBUG")]
-        public void Log(object msg)
-        {
-            System.Diagnostics.Debug.WriteLine(msg);
-        }
+	    public void Log(object msg)
+	    {
+	    	System.Diagnostics.Debug.WriteLine(msg);
+	    }
 	}
 }

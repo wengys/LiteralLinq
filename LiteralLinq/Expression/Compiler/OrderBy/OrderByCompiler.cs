@@ -67,6 +67,10 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
                 var pathToken = token.PathTokens.Dequeue();
                 if (pathToken.TokenType == TokenType.PropertyOrField)
                 {
+                    if (string.IsNullOrEmpty(pathToken.TokenText))
+                    {
+                        return targetExpression;
+                    }
                     try
                     {
                         var path = Exp.Expression.PropertyOrField(curTarget, pathToken.TokenText);
