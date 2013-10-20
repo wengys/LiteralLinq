@@ -39,10 +39,10 @@ it(.property or paramless function call)*
 
 > `source.OrderBy("it");// source.OrderBy(it=>it);`
 > `source.OrderBy("it DESC");// source.OrderByDescending(it=>it);`
-> `source.OrderBy("it.PropertyA.PropertyB");// source.OrderBy(it=>it.PropertyA.PropertyB)`
-> `source.OrderBy("it.MethodA()");// source.OrderBy(it=>it.PropertyA.PropertyB)`
-> `source.OrderBy("it.MethodA().PropertyB");// source.OrderBy(it=>it.PropertyA.PropertyB)`
-> `source.OrderBy("it.MethodA() ASC,it.PropertyB DESC,it.PropertyC");// source.OrderBy(it=>it.PropertyA.PropertyB).ThenByDescending(it=>it.PropertyB).ThenByDescending(it=>it.PropertyC)`
+> `source.OrderBy("it.PropertyA.PropertyB");// source.OrderBy(it=>it.PropertyA.PropertyB);`
+> `source.OrderBy("it.MethodA()");// source.OrderBy(it=>it.PropertyA.PropertyB);`
+> `source.OrderBy("it.MethodA().PropertyB");// source.OrderBy(it=>it.PropertyA.PropertyB);`
+> `source.OrderBy("it.MethodA() ASC,it.PropertyB DESC,it.PropertyC");// source.OrderBy(it=>it.PropertyA.PropertyB).ThenByDescending(it=>it.PropertyB).ThenByDescending(it=>it.PropertyC);`
 
 ##License
 
