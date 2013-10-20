@@ -13,7 +13,7 @@ namespace LiteralLinq.Linq
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
-                throw new SyntexException(-1, "表达式长度不能为零");
+                throw new SyntexException(-1, "Condition empty.");
             }
             OrderByTokenParser parser = new OrderByTokenParser();
             OrderByCompiler cpir = new OrderByCompiler();
@@ -36,7 +36,7 @@ namespace LiteralLinq.Linq
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
-                throw new SyntexException(-1, "表达式长度不能为零");
+                throw new SyntexException(-1, "Syntex empty");
             }
             OrderByTokenParser parser = new OrderByTokenParser();
             OrderByCompiler cpir = new OrderByCompiler();

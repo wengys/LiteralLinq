@@ -47,6 +47,12 @@
 		Log("End path expression");
 	}
 
+	action generalError	{
+		errSyntex=buffer.Current();
+		errSyntex=data.Substring(buffer.StartOffset,te-buffer.StartOffset);
+		throw new SyntexException(te,"Syntax error. Offset:{0}, near \"{1}\"",te,errSyntex);
+	}
+
 	leftParenthesis='(';
 
 	rightParenthesis=')';
@@ -83,6 +89,7 @@
 	main:=|*
 		pathExpression (',' pathExpression)*;
 		space*;
+		any=>generalError;
 		*|;
 
 }%%
