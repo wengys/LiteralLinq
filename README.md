@@ -29,11 +29,11 @@ Just open the project and build. Then the built library can used anywhere.
 keySelector direction (, keySelector direction)*
 Where KeySelector:
 it(.property or paramless function call)* 
-> "it": literal string represent current item in source. 
-> property: property in the source type that can be accessed.
-> function call: any paramless function with a return value.
-> direction: "ASC" or "DESC", case insensitive. "ASC" if not given.
-> (, keySelector direction)*: following selector, apply ThenBy operation in one OrderBy call.
+>1. "it": literal string represent current item in source. 
+>2. property: property in the source type that can be accessed.
+>3. function call: any paramless function with a return value.
+>4. direction: "ASC" or "DESC", case insensitive. "ASC" if not given.
+>5. (, keySelector direction)*: following selector, apply ThenBy operation in one OrderBy call.
 
 ### Example
 
