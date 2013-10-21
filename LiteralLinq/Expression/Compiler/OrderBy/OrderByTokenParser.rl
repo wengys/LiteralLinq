@@ -66,7 +66,9 @@
 
 	methodToken='.' 
 					>beginToken 
-				^(space|/[\.\,\(\)]/)+$readChar leftParenthesis rightParenthesis 
+				^(space|/[\.\,\(\)]/)+
+					$readChar
+				leftParenthesis rightParenthesis 
 					>recogniseTokenMethod
 					%endPathToken;
 
@@ -82,13 +84,13 @@
 
 	pathExpression =/it/i 
 					@beginPathExpression
-					((propertyToken|methodToken)*|selfToken) (space+ directionToken)?
+					((propertyToken|methodToken)*|selfToken) space* (space+ directionToken)?
 					%endPathExpression;
 
-
 	main:=|*
-		pathExpression (',' pathExpression)*;
-		space*;
+			pathExpression ;#space* (',' space* pathExpression space*)*;
+		space =>{System.Diagnostics.Debug.WriteLine('_');};
+		','=>{System.Diagnostics.Debug.WriteLine('_');};
 		any=>generalError;
 		*|;
 

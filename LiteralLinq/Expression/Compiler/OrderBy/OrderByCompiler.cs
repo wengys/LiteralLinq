@@ -78,7 +78,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
                     }
                     catch (ArgumentException)
                     {
-                        throw new SyntexException(pathToken.StartOffset, "类型:{0} 中无法找到对应属性:{1}", targetExpression.Type.Name, pathToken.TokenText);
+                        throw new SyntexException(pathToken.StartOffset, "Type \"{0}\" does not have property \"{1}\"", targetExpression.Type.Name, pathToken.TokenText);
                     }
                 }
                 else if (pathToken.TokenType == TokenType.Method)
@@ -90,7 +90,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
                     }
                     catch (ArgumentException)
                     {
-                        throw new SyntexException(pathToken.StartOffset, "类型 {0} 中无法找到对应方法:{1}()", targetExpression.Type.Name, pathToken.TokenText);
+                        throw new SyntexException(pathToken.StartOffset, "Type \"{0}\" does not have method \"{1}()\"", targetExpression.Type.FullName, pathToken.TokenText);
                     }
                 }
             }

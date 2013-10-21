@@ -37,6 +37,8 @@ it(.property or paramless function call)*
 
 ### Example
 
+The source in following code represent a collection implemented or convereted to IQueryable interface.
+
 > `source.OrderBy("it");// source.OrderBy(it=>it);`
 > `source.OrderBy("it DESC");// source.OrderByDescending(it=>it);`
 > `source.OrderBy("it.PropertyA.PropertyB");// source.OrderBy(it=>it.PropertyA.PropertyB);`

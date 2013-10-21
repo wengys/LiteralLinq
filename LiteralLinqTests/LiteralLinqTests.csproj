@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Expression\Compiler\OrderBy\OrderByTokenParserTests.cs" />
+    <Compile Include="Linq\OrderByThenByTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

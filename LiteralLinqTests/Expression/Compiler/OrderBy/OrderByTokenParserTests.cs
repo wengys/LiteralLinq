@@ -95,5 +95,25 @@ namespace LiteralLinq.Expression.Compiler.Tests
             Assert.AreEqual(thenbyToken.PathTokens.Dequeue().TokenText, "");
             StringAssert.Matches(thenbyToken.DirectionToken.TokenText, new Regex("desc", RegexOptions.IgnoreCase));
         }
+
+        [TestMethod()]
+        public void OrderBySpaceHandlingTest()
+        {
+            OrderByTokenParser parser = new OrderByTokenParser();
+            var actual = parser.Parse(" it ,      it desc     ");
+            Assert.IsTrue(actual.OrderTokens.Count > 0);
+            var orderByTokens = actual.OrderTokens.Dequeue();
+            var orderByToken = orderByTokens.PathTokens.Dequeue();
+            Assert.AreEqual(orderByToken.TokenText, "");
+            Assert.AreEqual(orderByToken.TokenType, TokenType.PropertyOrField);
+            Assert.AreEqual(orderByTokens.DirectionToken.TokenText, "ASC");
+
+            Assert.IsTrue(actual.OrderTokens.Count() > 0);
+
+            var thenbyToken = actual.OrderTokens.Dequeue();
+
+            Assert.AreEqual(thenbyToken.PathTokens.Dequeue().TokenText, "");
+            StringAssert.Matches(thenbyToken.DirectionToken.TokenText, new Regex("desc", RegexOptions.IgnoreCase));
+        }
     }
 }
