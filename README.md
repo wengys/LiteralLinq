@@ -21,6 +21,7 @@ Just open the project and build. Then the built library can used anywhere.
 ##Implemented Functions
 
 1. OrderBy
+2. ThenBy
 
 ##OrderBy
 
@@ -45,6 +46,10 @@ The source in following code represent a collection implemented or convereted to
 > `source.OrderBy("it.MethodA()");// source.OrderBy(it=>it.PropertyA.PropertyB);`
 > `source.OrderBy("it.MethodA().PropertyB");// source.OrderBy(it=>it.PropertyA.PropertyB);`
 > `source.OrderBy("it.MethodA() ASC,it.PropertyB DESC,it.PropertyC");// source.OrderBy(it=>it.PropertyA.PropertyB).ThenByDescending(it=>it.PropertyB).ThenByDescending(it=>it.PropertyC);`
+
+##ThenBy
+
+Just same as OrderBy, except that it only applies ThenBy operation to source collection.
 
 ##License
 
