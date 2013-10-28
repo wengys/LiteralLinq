@@ -48,9 +48,9 @@
 	}
 
 	action generalError	{
-		errSyntex=buffer.Current();
-		errSyntex=data.Substring(buffer.StartOffset,te-buffer.StartOffset);
-		throw new SyntexException(te,"Syntax error. Offset:{0}, near \"{1}\"",te,errSyntex);
+		errSyntax=buffer.Current();
+		errSyntax=data.Substring(buffer.StartOffset,te-buffer.StartOffset);
+		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",te,errSyntax);
 	}
 
 	leftParenthesis='(';
@@ -89,8 +89,8 @@
 
 	main:=|*
 			pathExpression ;#space* (',' space* pathExpression space*)*;
-		space =>{System.Diagnostics.Debug.WriteLine('_');};
-		','=>{System.Diagnostics.Debug.WriteLine('_');};
+		space;
+		',';
 		any=>generalError;
 		*|;
 
@@ -116,7 +116,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
 	        var data = expression;
 	        int p = 0, pe = data.Length, cs,eof=data.Length;
 	        int ts,te,act;
-	        string errSyntex;
+	        string errSyntax;
 	        %%write init;
 
 	        %%write exec;
@@ -124,6 +124,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
 	        return tokenCollection;
 	    }
 
+	    [System.Diagnostics.Conditional("DEBUG")]
 	    public void Log(object msg)
 	    {
 	    	System.Diagnostics.Debug.WriteLine(msg);

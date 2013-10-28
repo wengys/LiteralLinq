@@ -24,6 +24,8 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
         }
 
         public Exp.Expression Compile<T>(IOrderedQueryable<T> source, OrderToken token)
+        //Since there are times test if the source implement IOrderedQueryable interface always return true,
+        //no better idea to distinguish ThenBy operation from OrderBy.
         {
             var orderDirectionSuffix =
                 string.Equals(token.DirectionToken.TokenText, "asc", StringComparison.OrdinalIgnoreCase)
@@ -78,7 +80,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
                     }
                     catch (ArgumentException)
                     {
-                        throw new SyntexException(pathToken.StartOffset, "Type \"{0}\" does not have property \"{1}\"", targetExpression.Type.Name, pathToken.TokenText);
+                        throw new SyntaxException(pathToken.StartOffset, "Type \"{0}\" does not have property \"{1}\"", targetExpression.Type.Name, pathToken.TokenText);
                     }
                 }
                 else if (pathToken.TokenType == TokenType.Method)
@@ -90,7 +92,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
                     }
                     catch (ArgumentException)
                     {
-                        throw new SyntexException(pathToken.StartOffset, "Type \"{0}\" does not have method \"{1}()\"", targetExpression.Type.FullName, pathToken.TokenText);
+                        throw new SyntaxException(pathToken.StartOffset, "Type \"{0}\" does not have method \"{1}()\"", targetExpression.Type.FullName, pathToken.TokenText);
                     }
                 }
             }

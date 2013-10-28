@@ -13,7 +13,7 @@ namespace LiteralLinq.Linq
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
-                throw new SyntexException(-1, "Condition empty.");
+                throw new SyntaxException(-1, "Condition empty.");
             }
             OrderByTokenParser parser = new OrderByTokenParser();
             OrderByCompiler cpir = new OrderByCompiler();
@@ -36,7 +36,7 @@ namespace LiteralLinq.Linq
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
-                throw new SyntexException(-1, "Syntex empty");
+                throw new SyntaxException(-1, "Syntax empty");
             }
             OrderByTokenParser parser = new OrderByTokenParser();
             OrderByCompiler cpir = new OrderByCompiler();

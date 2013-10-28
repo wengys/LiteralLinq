@@ -5,12 +5,24 @@ using System.Text;
 
 namespace LiteralLinq.Expression.Compiler
 {
+    /// <summary>
+    /// Store single token string and related metadata.
+    /// </summary>
     public struct Token
     {
+        /// <summary>
+        /// Token text
+        /// </summary>
         public string TokenText;
 
+        /// <summary>
+        /// Start offset in source
+        /// </summary>
         public int StartOffset;
 
+        /// <summary>
+        /// End offset in source
+        /// </summary>
         public int EndOffset;
 
         public TokenType TokenType;
@@ -21,7 +33,6 @@ namespace LiteralLinq.Expression.Compiler
             StartOffset = start;
             EndOffset = end;
             TokenType = type;
-            TokenText.Equals("asc", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

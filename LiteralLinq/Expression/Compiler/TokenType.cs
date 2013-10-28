@@ -10,6 +10,8 @@ namespace LiteralLinq.Expression.Compiler
         Undefined,
         PropertyOrField,
         Method,
-        Literal
+        Literal, //Any argument or setting
+        Operator,
+        Null
     }
 }
