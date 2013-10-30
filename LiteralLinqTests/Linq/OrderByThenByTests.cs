@@ -41,6 +41,7 @@ namespace LiteralLinq.Linq.Tests
         }.AsQueryable();
 
         [TestMethod()]
+        [TestCategory("OrderBy")]
         public void OrderByOnePropertyTest()
         {
             var actual = source.OrderBy(" it.Id ");
@@ -53,6 +54,7 @@ namespace LiteralLinq.Linq.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderBy")]
         public void OrderByComplexPropertyTest()
         {
             var actual = source.OrderBy(" it.Detail.Rank desc,it.TotalPrice() ");
@@ -61,6 +63,17 @@ namespace LiteralLinq.Linq.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderBy")]
+        public void OrderBySelfTest()
+        {
+            var source2 = (new int[] { 3, 2, 1, 4 }).AsQueryable();
+            var actual = source2.OrderBy(" it desc ");
+            var expected = source2.OrderByDescending(it => it);
+            CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
+        }
+
+        [TestMethod()]
+        [TestCategory("OrderBy")]
         public void ThenByComplexPropertyTest()
         {
             var actual = source.OrderByDescending(it => it.Detail.Rank).ThenBy(" it.TotalPrice() desc");

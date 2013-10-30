@@ -9,6 +9,10 @@ namespace LiteralLinq.Expression.Compiler.Where
     {
         MemberAccess,
         Value,
-        Operator
+        ValueArray,
+        Formatter,
+        Operator,
+        LeftParenthesis,
+        RightParenthesis
     }
 }

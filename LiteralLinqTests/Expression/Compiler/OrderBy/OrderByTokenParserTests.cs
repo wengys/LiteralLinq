@@ -14,6 +14,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
     public class OrderByExpressionTokenParserTests
     {
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void OnePropertyTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();
@@ -24,6 +25,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void OnePropertyDefaultDirectionTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();
@@ -34,6 +36,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void OneHierarchyPropertyTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();
@@ -45,6 +48,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void OneFunctionPropertyTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();
@@ -57,6 +61,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void TwoFunctionPropertyTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();
@@ -77,6 +82,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void OrderBySelfTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();
@@ -97,6 +103,7 @@ namespace LiteralLinq.Expression.Compiler.Tests
         }
 
         [TestMethod()]
+        [TestCategory("OrderByParser")]
         public void OrderBySpaceHandlingTest()
         {
             OrderByTokenParser parser = new OrderByTokenParser();

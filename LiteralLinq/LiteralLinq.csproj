@@ -58,18 +58,24 @@
     <None Include="Expression\Compiler\Where\WhereTokenParser.rl" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expression\Compiler\ILiteralConverter.cs" />
     <Compile Include="Expression\Compiler\OrderBy\OrderByCompiler.cs" />
     <Compile Include="Expression\Compiler\OrderBy\OrderByTokenCollection.cs" />
     <Compile Include="Expression\Compiler\OrderBy\OrderByTokenParser.cs" />
     <Compile Include="Expression\Compiler\OrderBy\OrderToken.cs" />
+    <Compile Include="Expression\Compiler\PredefinedConverter\PredefinedConverters.cs" />
     <Compile Include="Expression\Compiler\Token.cs" />
     <Compile Include="Expression\Compiler\TokenParseBuffer.cs" />
     <Compile Include="Expression\Compiler\TokenType.cs" />
+    <Compile Include="Expression\Compiler\Util.cs" />
+    <Compile Include="Expression\Compiler\Where\WhereCompiler.cs" />
+    <Compile Include="Expression\Compiler\Where\WhereOperatorTable.cs" />
     <Compile Include="Expression\Compiler\Where\WhereToken.cs" />
     <Compile Include="Expression\Compiler\Where\WhereTokenParser.cs" />
     <Compile Include="Expression\Compiler\Where\WhereTokenType.cs" />
     <Compile Include="Expression\SyntaxException.cs" />
     <Compile Include="Linq\OrderByExt.cs" />
+    <Compile Include="Linq\WhereExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

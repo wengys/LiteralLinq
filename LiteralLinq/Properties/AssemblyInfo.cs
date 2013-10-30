@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("zh-Hans")]
-
+[assembly: InternalsVisibleTo("LiteralLinqTests")]
 // 程序集的版本信息由以下四个值组成:
 //
 //      主版本

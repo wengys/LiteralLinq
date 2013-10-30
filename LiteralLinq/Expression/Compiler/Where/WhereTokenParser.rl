@@ -1,5 +1,5 @@
 ﻿%%{
-	machine TestParser;
+	machine WhereParser;
 
 	action beginToken {
 		buffer.BeginBuffer(fpc);
@@ -27,82 +27,150 @@
 	}
 
 	action beginPathExpression {
-	//	directionTokenBuffer=null;
-	//	pathTokenBuffer=new Queue<Token>();
 		temp=new Queue<Token>();
 		Log("Begin path expression");
 	}
 
 	action endPathExpression {
+		if(temp.Count==0)
+		{
+			buffer.BeginBuffer(fpc);
+			buffer.SetTokenType(TokenType.PropertyOrField);
+			temp.Enqueue(buffer.EndBuffer(fpc));
+		}
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.MemberAccess));
 		Log("End path expression");
 	}
 
 	action beginLiteral
 	{
+		buffer.BeginBuffer(fpc);
+		buffer.SetTokenType(TokenType.Literal);
 		Log("Begin literal token");
 	}
 
 	action endLiteral
 	{
+		var curToken=buffer.EndBuffer(fpc);
+		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
+		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
 
-	action beginSubExpression
+	action beginValue
 	{
-		Log("Begin sub expression");
+		temp=new Queue<Token>();
+		Log("Begin value");
 	}
 
-	action endSubExpression
+	action endValue
 	{
-		Log("End sub expression");
+		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
+		Log("End value");
+	}
+
+	action readNull
+	{
+		buffer.BeginBuffer(fpc-4);
+		buffer.SetTokenType(TokenType.Null);
+		temp.Enqueue(buffer.EndBuffer(fpc));
+		Log("Read null");
+	}
+
+	action beginFormatter
+	{
+		temp=new Queue<Token>();
+		Log("Begin formatter");
+	}
+
+	action endFormatter
+	{
+		stackB.Push(WhereToken.Create(temp,WhereTokenType.Formatter));
+		Log("End formatter");
 	}
 
 	action beginArray
 	{
+		temp=new Queue<Token>();
 		Log("Begin array");
 	}
 
 	action endArray
 	{
+		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
 
 	action beginOperator
 	{
+		buffer.BeginBuffer(fpc);
+		buffer.SetTokenType(TokenType.Literal);
+		temp=new Queue<Token>();
 		Log("Begin operator");
 	}
 
 	action endOperator
 	{
-		Log("end operator");
-	}
-
-	action beginFormatter
-	{
-		Log("Begin operator");
-	}
-
-	action endFormatter
-	{
+		var curOperToken=buffer.EndBuffer(fpc);
+		var curOperPriority=WhereOperatorTable.GetOperatorPriority(curOperToken.TokenText);
+		while(stackA.Count>0 && stackA.Peek().Priority<curOperPriority)
+		{
+			stackB.Push(stackA.Pop());
+		}
+		temp.Enqueue(curOperToken);
+		stackA.Push(WhereToken.Create(temp,WhereTokenType.Operator,curOperPriority));
 		Log("End operator");
 	}
 
-	action readNull
+	action readLeftParenthesis
 	{
-		Log("Read null");
+		buffer.BeginBuffer(fpc);
+		buffer.SetTokenType(TokenType.Literal);
+		buffer.Append('(');
+		var curOperToken=buffer.EndBuffer(fpc);
+		var curOperPriority=WhereOperatorTable.GetOperatorPriority(curOperToken.TokenText);
+		temp=new Queue<Token>();
+		temp.Enqueue(curOperToken);
+		stackA.Push(WhereToken.Create(temp,WhereTokenType.LeftParenthesis,curOperPriority));
+		Log("(");
+	}
+
+	action readRightParenthesis
+	{
+		while(stackA.Peek().Type!=WhereTokenType.LeftParenthesis)
+		{
+			stackB.Push(stackA.Pop());
+			if(stackA.Count==0)
+			{
+        		throw new SyntaxException(te,"Redundant parenthesis. Offset:{0}, near \"{1}\"",ts,")");
+			}
+		}
+		stackA.Pop();
+		Log(")");
+	}
+
+	action beginSubExpression
+	{
+		Log(fpc.ToString());
+		Log("Begin sub expression");
+	}
+
+	action endSubExpression
+	{
+		Log(fpc.ToString());
+		Log("End sub expression");
 	}
 
 	action generalError	{
 		errSyntax=buffer.Current();
-		errSyntax=data.Substring(buffer.StartOffset,te-buffer.StartOffset);
-		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",te,errSyntax);
+        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset : te - buffer.StartOffset);
+		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",buffer.StartOffset,errSyntax);
 	}
 
 	leftBracket='[';
 	rightBracket=']';
-	leftParenthesis='(';
-	rightParenthesis=')';
+	leftParenthesis='(' > readLeftParenthesis;
+	rightParenthesis=')' > readRightParenthesis;
 	
 	propertyToken='.'
 					>beginToken
@@ -131,23 +199,25 @@
 			zlen'\''
 				%endLiteral;
 
-	nullValue=/null/i % readNull;
+	nullValue=/null/i %readNull;
 
 	formatter=space*'@' >beginFormatter space*literalToken %endFormatter;
 
-	value=(literalToken formatter?)|nullValue;
+	value=((literalToken >beginValue %endValue formatter?)|(nullValue >beginValue %endValue)) ;
 
-	array=leftBracket > beginArray (space* literalToken space* ','?)* rightBracket >endArray formatter?;
+	array=leftBracket > beginArray (space* (literalToken|nullValue) space* ','?)* rightBracket >endArray formatter?;
 
 	operator='<' >beginOperator (ascii-/[<>]/)+ $readChar '>' >endOperator;
 
-	subExpression=leftParenthesis? >beginSubExpression pathExpression space* operator space* (value|array) rightParenthesis? %endSubExpression;
+	subExpression= pathExpression >beginSubExpression space* operator space* (value|array)  %endSubExpression;
 
 	main:=|*
-		subExpression (space* operator space*  subExpression)*;
+		subExpression;
 		space;
-		',';
-		#any=>generalError;
+		operator;
+		leftParenthesis;
+		rightParenthesis;
+		any=>generalError;
 		*|;
 }%%
 
@@ -169,16 +239,28 @@ namespace LiteralLinq.Expression.Compiler.Where
        		Stack<WhereToken> stackB=new Stack<WhereToken>();
 
        		Queue<Token> temp=null;
-
+       		string errSyntax;
        		string data=expression;
        	    int p=0,pe=data.Length,cs=0,eof=data.Length,ts=0,te=0,act=0;
         	%%write init;
         	%%write exec;
-        	return stackB;
+
+        	while(stackA.Count>0)
+        	{
+        		var curOper=stackA.Pop();
+        		if(curOper.Type==WhereTokenType.LeftParenthesis)
+        		{
+        			var errToken=curOper.Tokens.Peek();
+        			throw new SyntaxException(te,"Redundant parenthesis. Offset:{0}, near \"{1}\"",errToken.StartOffset,errToken.TokenText);
+        		}
+        		stackB.Push(curOper);
+        	}
+
+        	return stackB.Reverse();
        } 
 
         [System.Diagnostics.Conditional("DEBUG")]
-	    public void Log(object msg)
+	    private void Log(object msg)
 	    {
 	    	System.Diagnostics.Debug.WriteLine(msg);
 	    }

@@ -51,7 +51,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Expression\Compiler\OrderBy\OrderByTokenParserTests.cs" />
+    <Compile Include="Expression\Compiler\Where\WhereTokenParserTests.cs" />
     <Compile Include="Linq\OrderByThenByTests.cs" />
+    <Compile Include="Linq\WhereExtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

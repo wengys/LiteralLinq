@@ -88,7 +88,7 @@
 					%endPathExpression;
 
 	main:=|*
-			pathExpression ;#space* (',' space* pathExpression space*)*;
+		pathExpression;
 		space;
 		',';
 		any=>generalError;
@@ -125,7 +125,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
 	    }
 
 	    [System.Diagnostics.Conditional("DEBUG")]
-	    public void Log(object msg)
+	    private void Log(object msg)
 	    {
 	    	System.Diagnostics.Debug.WriteLine(msg);
 	    }

@@ -24,7 +24,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
         }
 
         public Exp.Expression Compile<T>(IOrderedQueryable<T> source, OrderToken token)
-        //Since there are times test if the source implement IOrderedQueryable interface always return true,
+        //Since in some situation test whether the source implement the IOrderedQueryable interface always return true,
         //no better idea to distinguish ThenBy operation from OrderBy.
         {
             var orderDirectionSuffix =
@@ -43,7 +43,7 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
             var sourceExpression = Exp.Expression.Parameter(sourceType, "QableSource");
 
             Exp.Expression builtExpression = null;
-            builtExpression = BuildAccessExpression(sourceExpression, token, builtExpression);
+            builtExpression = Util.BuildAccessExpression(sourceExpression, token.PathTokens);
 
             builtExpression = Exp.Expression.Call(
                 typeof(Queryable),
@@ -57,45 +57,6 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
         {
             builtExpression = Exp.Expression.Lambda(builtExpression, targetExpression);
 
-            return builtExpression;
-        }
-
-        private static Exp.Expression BuildAccessExpression(Exp.ParameterExpression targetExpression, OrderToken token, Exp.Expression builtExpression)
-        {
-            var pathTokens = token.PathTokens.Count;
-            for (int i = 1; i <= pathTokens; i++)
-            {
-                var curTarget = builtExpression ?? targetExpression;
-                var pathToken = token.PathTokens.Dequeue();
-                if (pathToken.TokenType == TokenType.PropertyOrField)
-                {
-                    if (string.IsNullOrEmpty(pathToken.TokenText))
-                    {
-                        return targetExpression;
-                    }
-                    try
-                    {
-                        var path = Exp.Expression.PropertyOrField(curTarget, pathToken.TokenText);
-                        builtExpression = Exp.Expression.MakeMemberAccess(curTarget, path.Member);
-                    }
-                    catch (ArgumentException)
-                    {
-                        throw new SyntaxException(pathToken.StartOffset, "Type \"{0}\" does not have property \"{1}\"", targetExpression.Type.Name, pathToken.TokenText);
-                    }
-                }
-                else if (pathToken.TokenType == TokenType.Method)
-                {
-                    try
-                    {
-                        var methodToCall = curTarget.Type.GetMethod(pathToken.TokenText);
-                        builtExpression = Exp.Expression.Call(curTarget, methodToCall);
-                    }
-                    catch (ArgumentException)
-                    {
-                        throw new SyntaxException(pathToken.StartOffset, "Type \"{0}\" does not have method \"{1}()\"", targetExpression.Type.FullName, pathToken.TokenText);
-                    }
-                }
-            }
             return builtExpression;
         }
     }

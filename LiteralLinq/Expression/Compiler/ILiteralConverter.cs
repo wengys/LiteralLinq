@@ -5,12 +5,8 @@ using System.Text;
 
 namespace LiteralLinq.Expression.Compiler
 {
-    public enum TokenType
+    public interface ILiteralConverter
     {
-        Undefined,
-        PropertyOrField,
-        Method,
-        Literal, //Any argument or setting
-        Null
+        object Convert(string valueStr, string formatter);
     }
 }

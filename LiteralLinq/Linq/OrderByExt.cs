@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LiteralLinq.Linq
 {
-    public static partial class QueryableExt
+    public static class QueryableExt
     {
         public static IOrderedQueryable<T> OrderBy<T>(this IQueryable<T> source, string exp)
         {
