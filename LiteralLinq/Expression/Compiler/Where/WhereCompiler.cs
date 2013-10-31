@@ -224,6 +224,10 @@ namespace LiteralLinq.Expression.Compiler.Where
             else
             {
                 value = ConvertLiteralToValue(token.Tokens.Peek(), formatter, actualType);
+                if (isNullable && actualType.IsValueType)
+                {
+                    value = Exp.Expression.Convert(value, valueType);
+                }
             }
             buffer.Push(value);
         }

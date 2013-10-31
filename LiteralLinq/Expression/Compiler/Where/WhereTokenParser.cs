@@ -1,7 +1,7 @@
 
-/* #line 1 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 1 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 ﻿
-/* #line 222 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 222 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 
 
 using System;
@@ -14,7 +14,7 @@ namespace LiteralLinq.Expression.Compiler.Where
     public class WhereTokenParser
     {
        
-/* #line 13 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
+/* #line 13 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
 static readonly byte[] _WhereParser_to_state_actions =  new byte [] {
 	0, 0, 0, 0, 0, 0, 0, 0, 
 	0, 0, 0, 0, 0, 0, 0, 0, 
@@ -44,7 +44,7 @@ const int WhereParser_error = -1;
 const int WhereParser_en_main = 51;
 
 
-/* #line 234 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 234 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
        public IEnumerable<WhereToken> Parse(string expression)
        {
        		TokenParseBuffer buffer = new TokenParseBuffer();
@@ -57,7 +57,7 @@ const int WhereParser_en_main = 51;
        		string data=expression;
        	    int p=0,pe=data.Length,cs=0,eof=data.Length,ts=0,te=0,act=0;
         	
-/* #line 52 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
+/* #line 52 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
 	{
 	cs = WhereParser_start;
 	ts = -1;
@@ -65,9 +65,9 @@ const int WhereParser_en_main = 51;
 	act = 0;
 	}
 
-/* #line 246 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 246 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
         	
-/* #line 58 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
+/* #line 58 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
 	{
 	if ( p == pe )
 		goto _test_eof;
@@ -77,7 +77,7 @@ _resume:
 /* #line 1 "NONE" */
 	{ts = p;}
 	break;
-/* #line 66 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
+/* #line 66 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
 		default: break;
 	}
 
@@ -841,35 +841,35 @@ case 50:
 	tr103: cs = 63; goto f40;
 
 f4:
-/* #line 4 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 4 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		Log("Begin token");
 	}
 	goto _again;
 f43:
-/* #line 14 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 14 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.SetTokenType(TokenType.Method);
 		Log("Recognise token method");
 	}
 	goto _again;
 f1:
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f55:
-/* #line 29 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 29 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin path expression");
 	}
 	goto _again;
 f3:
-/* #line 34 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 34 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		if(temp.Count==0)
 		{
@@ -882,7 +882,7 @@ f3:
 	}
 	goto _again;
 f15:
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -890,7 +890,7 @@ f15:
 	}
 	goto _again;
 f22:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
@@ -899,14 +899,14 @@ f22:
 	}
 	goto _again;
 f9:
-/* #line 61 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 61 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin value");
 	}
 	goto _again;
 f25:
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
@@ -915,21 +915,21 @@ f25:
 	}
 	goto _again;
 f14:
-/* #line 81 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 81 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin formatter");
 	}
 	goto _again;
 f10:
-/* #line 93 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 93 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin array");
 	}
 	goto _again;
 f6:
-/* #line 105 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 105 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -938,7 +938,7 @@ f6:
 	}
 	goto _again;
 f7:
-/* #line 113 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 113 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curOperToken=buffer.EndBuffer(p);
 		var curOperPriority=WhereOperatorTable.GetOperatorPriority(curOperToken.TokenText);
@@ -956,34 +956,34 @@ f12:
 	{te = p+1;}
 	goto _again;
 f49:
-/* #line 216 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 216 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p+1;}
 	goto _again;
 f48:
-/* #line 164 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 164 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p+1;{
 		errSyntax=buffer.Current();
-        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset : te - buffer.StartOffset);
+        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset  - buffer.StartOffset: te - buffer.StartOffset);
 		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",buffer.StartOffset,errSyntax);
 	}}
 	goto _again;
 f54:
-/* #line 164 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 164 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p;p--;{
 		errSyntax=buffer.Current();
-        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset : te - buffer.StartOffset);
+        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset  - buffer.StartOffset: te - buffer.StartOffset);
 		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",buffer.StartOffset,errSyntax);
 	}}
 	goto _again;
 f13:
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{{p = ((te))-1;}}
 	goto _again;
 f0:
-/* #line 164 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 164 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{{p = ((te))-1;}{
 		errSyntax=buffer.Current();
-        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset : te - buffer.StartOffset);
+        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset  - buffer.StartOffset: te - buffer.StartOffset);
 		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",buffer.StartOffset,errSyntax);
 	}}
 	goto _again;
@@ -993,7 +993,7 @@ f11:
 	case 6:
 	{{p = ((te))-1;}
 		errSyntax=buffer.Current();
-        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset : te - buffer.StartOffset);
+        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset  - buffer.StartOffset: te - buffer.StartOffset);
 		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",buffer.StartOffset,errSyntax);
 	}
 	break;
@@ -1004,24 +1004,24 @@ f11:
 	}
 	goto _again;
 f41:
-/* #line 9 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 9 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.SetTokenType(TokenType.PropertyOrField);
 		Log("Recognise token property");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f28:
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
@@ -1030,12 +1030,12 @@ f28:
 	}
 	goto _again;
 f31:
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
@@ -1044,36 +1044,36 @@ f31:
 	}
 	goto _again;
 f18:
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 81 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 81 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin formatter");
 	}
 	goto _again;
 f44:
-/* #line 24 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 24 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("End path token");
 	}
-/* #line 4 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 4 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		Log("Begin token");
 	}
 	goto _again;
 f42:
-/* #line 24 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 24 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("End path token");
 	}
-/* #line 34 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 34 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		if(temp.Count==0)
 		{
@@ -1086,7 +1086,7 @@ f42:
 	}
 	goto _again;
 f5:
-/* #line 34 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 34 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		if(temp.Count==0)
 		{
@@ -1097,7 +1097,7 @@ f5:
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.MemberAccess));
 		Log("End path expression");
 	}
-/* #line 105 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 105 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1106,28 +1106,28 @@ f5:
 	}
 	goto _again;
 f33:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f23:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1135,26 +1135,26 @@ f23:
 	}
 	goto _again;
 f57:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
 	goto _again;
 f8:
-/* #line 61 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 61 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin value");
 	}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1162,28 +1162,28 @@ f8:
 	}
 	goto _again;
 f38:
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f26:
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1191,19 +1191,19 @@ f26:
 	}
 	goto _again;
 f20:
-/* #line 81 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 81 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin formatter");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f2:
-/* #line 113 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 113 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curOperToken=buffer.EndBuffer(p);
 		var curOperPriority=WhereOperatorTable.GetOperatorPriority(curOperToken.TokenText);
@@ -1215,11 +1215,11 @@ f2:
 		stackA.Push(WhereToken.Create(temp,WhereTokenType.Operator,curOperPriority));
 		Log("End operator");
 	}
-/* #line 217 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 217 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p+1;}
 	goto _again;
 f50:
-/* #line 126 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 126 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1231,11 +1231,11 @@ f50:
 		stackA.Push(WhereToken.Create(temp,WhereTokenType.LeftParenthesis,curOperPriority));
 		Log("(");
 	}
-/* #line 218 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 218 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p+1;}
 	goto _again;
 f51:
-/* #line 139 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 139 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		while(stackA.Peek().Type!=WhereTokenType.LeftParenthesis)
 		{
@@ -1248,22 +1248,22 @@ f51:
 		stackA.Pop();
 		Log(")");
 	}
-/* #line 219 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 219 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p+1;}
 	goto _again;
 f65:
-/* #line 159 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 159 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		Log(p.ToString());
 		Log("End sub expression");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p;p--;}
 	goto _again;
 f16:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
@@ -1272,7 +1272,7 @@ f16:
 f19:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1282,7 +1282,7 @@ f19:
 f21:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
@@ -1291,7 +1291,7 @@ f21:
 f52:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 105 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 105 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1300,31 +1300,31 @@ f52:
 	}
 	goto _again;
 f60:
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
 	goto _again;
 f45:
-/* #line 24 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 24 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("End path token");
 	}
-/* #line 34 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 34 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		if(temp.Count==0)
 		{
@@ -1335,7 +1335,7 @@ f45:
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.MemberAccess));
 		Log("End path expression");
 	}
-/* #line 105 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 105 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
@@ -1344,38 +1344,38 @@ f45:
 	}
 	goto _again;
 f62:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f58:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
-/* #line 81 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 81 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin formatter");
@@ -1384,37 +1384,37 @@ f58:
 f17:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 f36:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
 		Log("Begin literal token");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 f24:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
@@ -1423,14 +1423,14 @@ f24:
 f27:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
@@ -1439,12 +1439,12 @@ f27:
 f37:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
@@ -1453,176 +1453,176 @@ f37:
 f53:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 153 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 153 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		Log(p.ToString());
 		Log("Begin sub expression");
 	}
-/* #line 164 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 164 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 6;}
 	goto _again;
 f61:
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
-/* #line 81 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 81 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin formatter");
 	}
 	goto _again;
 f63:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
-/* #line 81 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 81 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		temp=new Queue<Token>();
 		Log("Begin formatter");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
 	goto _again;
 f56:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
-/* #line 159 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 159 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		Log(p.ToString());
 		Log("End sub expression");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p;p--;}
 	goto _again;
 f59:
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 87 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 87 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Formatter));
 		Log("End formatter");
 	}
-/* #line 159 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 159 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		Log(p.ToString());
 		Log("End sub expression");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p;p--;}
 	goto _again;
 f64:
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 67 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 67 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.Value));
 		Log("End value");
 	}
-/* #line 159 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 159 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		Log(p.ToString());
 		Log("End sub expression");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{te = p;p--;}
 	goto _again;
 f30:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 f34:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
 		Log("Begin literal token");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 f35:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
@@ -1631,38 +1631,38 @@ f35:
 f39:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 46 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 46 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p);
 		buffer.SetTokenType(TokenType.Literal);
 		Log("Begin literal token");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 f40:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
@@ -1671,47 +1671,47 @@ f40:
 f29:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 53 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 53 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		var curToken=buffer.EndBuffer(p);
 		curToken.TokenText=curToken.TokenText.Replace("\\'","'");
 		temp.Enqueue(curToken);
 		Log("End literal token");
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 f32:
 /* #line 1 "NONE" */
 	{te = p+1;}
-/* #line 19 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 19 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.Append(data[p]);
 		Log(data[p]);
 	}
-/* #line 73 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 73 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		buffer.BeginBuffer(p-4);
 		buffer.SetTokenType(TokenType.Null);
 		temp.Enqueue(buffer.EndBuffer(p));
 		Log("Read null");
 	}
-/* #line 99 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 99 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{
 		stackB.Push(WhereToken.Create(temp,WhereTokenType.ValueArray));
 		Log("End array");
 	}
-/* #line 215 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 215 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 	{act = 1;}
 	goto _again;
 
@@ -1721,7 +1721,7 @@ _again:
 /* #line 1 "NONE" */
 	{ts = -1;}
 	break;
-/* #line 1564 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
+/* #line 1564 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.cs" */
 		default: break;
 	}
 
@@ -1800,7 +1800,7 @@ _again:
 
 	}
 
-/* #line 247 "C:/Users/Դʢ/Desktop/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
+/* #line 247 "C:/Users/Administrator/Documents/GitHub/LiteralLinq/LiteralLinq/Expression/Compiler/Where/WhereTokenParser.rl" */
 
         	while(stackA.Count>0)
         	{

@@ -163,7 +163,7 @@
 
 	action generalError	{
 		errSyntax=buffer.Current();
-        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset : te - buffer.StartOffset);
+        errSyntax = data.Substring(buffer.StartOffset, te < buffer.StartOffset ? buffer.EndOffset  - buffer.StartOffset: te - buffer.StartOffset);
 		throw new SyntaxException(te,"Syntax error. Offset:{0}, near \"{1}\"",buffer.StartOffset,errSyntax);
 	}
 
