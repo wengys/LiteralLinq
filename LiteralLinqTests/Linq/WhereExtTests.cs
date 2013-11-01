@@ -65,7 +65,7 @@ namespace LiteralLinq.Linq.Tests
 
         [TestMethod()]
         [TestCategory("Where")]
-        public void WhereComplexPropertyTest()
+        public void WhereComplexPropertyWithValueContainsEscapeCharTest()
         {
             var dateFormat = "yyyy\\'MM\\'dd";
             var today = DateTime.Today.ToString(dateFormat).Replace("'", "\\'");
