@@ -51,7 +51,7 @@ namespace LiteralLinq.Expression.Compiler.Where
             return Exp.Expression.Call(typeof(Queryable),
                 "Where",
                 new[] { typeof(T) },
-                Exp.Expression.Constant(source),
+                source.Expression,
                 Exp.Expression.Lambda(buffer.Peek(), sourceExpression));
         }
 
