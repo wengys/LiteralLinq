@@ -49,7 +49,8 @@ namespace LiteralLinq.Expression.Compiler.OrderBy
                 typeof(Queryable),
                 orderMethodName,
                 new[] { sourceType, builtExpression.Type },
-                Exp.Expression.Constant(source), Exp.Expression.Lambda(builtExpression, sourceExpression));
+                source.Expression,
+                Exp.Expression.Lambda(builtExpression, sourceExpression));
             return builtExpression;
         }
 
