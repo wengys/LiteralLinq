@@ -21,5 +21,15 @@ namespace LiteralLinq.Linq.Tests
             this.Y = y;
             this.Z = z;
         }
+
+        public static bool operator ==(GeoPoint a, GeoPoint b)
+        {
+            return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
+        }
+
+        public static bool operator !=(GeoPoint a, GeoPoint b)
+        {
+            return !(a.X == b.X && a.Y == b.Y && a.Z == b.Z);
+        }
     }
 }

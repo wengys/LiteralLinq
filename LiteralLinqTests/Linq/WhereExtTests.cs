@@ -231,11 +231,11 @@ namespace LiteralLinq.Linq.Tests
         [TestCategory("Where")]
         public void WhereCustomConverterAttributeInPropertyTest()
         {
-            var actual = source.Where(s => s.Detail.Geolocation.Equals(new GeoPoint(10, 10, 10)));
+            var actual = source.Where(s => s.Detail.Geolocation == new GeoPoint(10, 10, 10));//As Equals method does not work on an EntityFramework environment, operation== must be implement. See GeoPoint.cs
             var expeced = source.Where("it.Detail.Geolocation <eq> '10,10,10'");//Check Detail.Geolocation above
             CollectionAssert.AreEqual(expeced.ToArray(), actual.ToArray());
 
-            var actual2 = source.Where(s => s.Detail.GetBaseLocation().Equals(new GeoPoint(1, 1, 1)));
+            var actual2 = source.Where(s => s.Detail.GetBaseLocation() == (new GeoPoint(1, 1, 1)));
             var expeced2 = source.Where("it.Detail.GetBaseLocation() <eq> '1,1,1'");
             CollectionAssert.AreEqual(expeced2.ToArray(), actual2.ToArray());
         }
@@ -248,7 +248,7 @@ namespace LiteralLinq.Linq.Tests
         public void WhereCustomConverterAttributeInClassOrStructTest()
         {
             var source2 = (new[] { new GeoPoint2(1, 1, 1), new GeoPoint2(2, 2, 2) }).AsQueryable();
-            var actual = source2.Where(s => s.Equals(new GeoPoint2(1, 1, 1)));
+            var actual = source2.Where(s => s == (new GeoPoint2(1, 1, 1)));
             var expeced = source2.Where("it <eq> '1,1,1'");//The class GeoPoint2 has a custom converter attribute
             CollectionAssert.AreEqual(expeced.ToArray(), actual.ToArray());
         }
@@ -262,7 +262,7 @@ namespace LiteralLinq.Linq.Tests
         {
             WhereExt.RegistConverter<GeoPoint>(new LLPointConverter());//Regist global converter
             var source2 = (new[] { new GeoPoint(1, 1, 1), new GeoPoint(2, 2, 2) }).AsQueryable();
-            var actual = source2.Where(s => s.Equals(new GeoPoint(1, 1, 1)));
+            var actual = source2.Where(s => s == (new GeoPoint(1, 1, 1)));
             var expeced = source2.Where("it <eq> '1,1,1'");
             CollectionAssert.AreEqual(expeced.ToArray(), actual.ToArray());
         }

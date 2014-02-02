@@ -162,19 +162,21 @@ namespace LiteralLinq.Expression.Compiler.Where
                         var rightValue = buffer.Pop();
                         var leftValue = buffer.Pop();
                         Exp.Expression eqExpression;
-                        if (leftValue.Type.IsValueType && leftValue.Type.GetMethod("op_Equality") == null)//If value type don't have == method, use Equals instead
-                        {
-                            eqExpression = Exp.Expression.Call(
-                                leftValue,
-                                "Equals",
-                                null,
-                                Exp.Expression.Convert(rightValue, typeof(object))
-                                );
-                        }
-                        else
-                        {
-                            eqExpression = Exp.Expression.Equal(leftValue, rightValue);
-                        }
+                        //The following lines must be removed as Nullable equality compare on EntityFramework will throw an error.
+                        //Anyway, just rare case we need to compare two struct directly.
+                        //if (leftValue.Type.IsValueType && leftValue.Type.GetMethod("op_Equality") == null)//If value type don't have == method, use Equals instead
+                        //{
+                        //    eqExpression = Exp.Expression.Call(
+                        //        leftValue,
+                        //        "Equals",
+                        //        null,
+                        //        Exp.Expression.Convert(rightValue, typeof(object))
+                        //        );
+                        //}
+                        //else
+                        //{
+                        eqExpression = Exp.Expression.Equal(leftValue, rightValue);
+                        //}
                         buffer.Push(eqExpression);
                         break;
                     }
@@ -183,19 +185,19 @@ namespace LiteralLinq.Expression.Compiler.Where
                         var rightValue = buffer.Pop();
                         var leftValue = buffer.Pop();
                         Exp.Expression neExpression;
-                        if (leftValue.Type.IsValueType && leftValue.Type.GetMethod("op_Inequality") == null)//If value type don't have != method, use Equals instead
-                        {
-                            neExpression = Exp.Expression.Not(Exp.Expression.Call(
-                                leftValue,
-                                "Equals",
-                                null,
-                                Exp.Expression.Convert(rightValue, typeof(object))
-                                ));
-                        }
-                        else
-                        {
-                            neExpression = Exp.Expression.NotEqual(leftValue, rightValue);
-                        }
+                        //if (leftValue.Type.IsValueType && leftValue.Type.GetMethod("op_Inequality") == null)//If value type don't have != method, use Equals instead
+                        //{
+                        //    neExpression = Exp.Expression.Not(Exp.Expression.Call(
+                        //        leftValue,
+                        //        "Equals",
+                        //        null,
+                        //        Exp.Expression.Convert(rightValue, typeof(object))
+                        //        ));
+                        //}
+                        //else
+                        //{
+                        neExpression = Exp.Expression.NotEqual(leftValue, rightValue);
+                        //  }
                         buffer.Push(neExpression);
                         break;
                     }
