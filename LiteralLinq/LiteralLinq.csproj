@@ -68,6 +68,7 @@
     <Compile Include="Expression\Compiler\TokenParseBuffer.cs" />
     <Compile Include="Expression\Compiler\TokenType.cs" />
     <Compile Include="Expression\Compiler\Util.cs" />
+    <Compile Include="Expression\Compiler\Where\ValueConverterCollection.cs" />
     <Compile Include="Expression\Compiler\Where\WhereCompiler.cs" />
     <Compile Include="Expression\Compiler\Where\WhereOperatorTable.cs" />
     <Compile Include="Expression\Compiler\Where\WhereToken.cs" />

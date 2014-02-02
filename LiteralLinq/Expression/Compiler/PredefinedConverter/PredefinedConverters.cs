@@ -95,4 +95,17 @@ namespace LiteralLinq.Expression.Compiler.PredefinedConverter
             return DateTime.ParseExact(valueStr, formatter, CultureInfo.InvariantCulture);
         }
     }
+
+    internal class EnumConverter : ILiteralGeneralConverter
+    {
+        public bool CanConvert(Type targetType)
+        {
+            return targetType.IsEnum;
+        }
+
+        public object Convert(Type targetType, string valueStr, string formatter)
+        {
+            return Enum.Parse(targetType, valueStr, false);
+        }
+    }
 }

@@ -96,6 +96,19 @@ namespace LiteralLinq.Linq.Tests
         }
 
         /// <summary>
+        /// This test shows how to handle enum value
+        /// </summary>
+        [TestMethod()]
+        [TestCategory("Where")]
+        public void WhereEnumValueTest()
+        {
+            var source2 = Enum.GetValues(typeof(System.DayOfWeek)).Cast<System.DayOfWeek>().AsQueryable<System.DayOfWeek>();
+            var actual = source2.Where("it <EQ> 'Monday'").Count();//Default converter use name of the enum value, not value of the enum value
+            var expected = 1;
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
         /// This test shows how to handle null value
         /// </summary>
         [TestMethod()]

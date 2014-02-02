@@ -12,10 +12,10 @@ namespace LiteralLinq.Expression.Compiler.Where
     /// </summary>
     internal class WhereCompiler
     {
-        private Dictionary<Type, ILiteralConverter> _valueConverters;
+        private ValueConverterCollection _valueConverters;
         private static readonly Type _nullableType = typeof(Nullable<>);
 
-        public WhereCompiler(Dictionary<Type, ILiteralConverter> valueConverters)
+        public WhereCompiler(ValueConverterCollection valueConverters)
         {
             _valueConverters = valueConverters;
         }
@@ -301,11 +301,12 @@ namespace LiteralLinq.Expression.Compiler.Where
                 {
                     return Exp.Expression.Constant(converterAttr.Converter.Convert(token.TokenText, formatter));
                 }
-                if (!_valueConverters.ContainsKey(valueType))//Check global converters
+                object result;
+                if (!_valueConverters.Convert(valueType, token.TokenText, formatter, out result))//Check global converters
                 {
                     throw new SyntaxException(token.StartOffset, "No converter for type {0} registered", valueType);
                 }
-                return Exp.Expression.Constant(_valueConverters[valueType].Convert(token.TokenText, formatter));
+                return Exp.Expression.Constant(result);
             }
         }
 

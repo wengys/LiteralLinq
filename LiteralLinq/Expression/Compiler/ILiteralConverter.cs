@@ -3,7 +3,7 @@
 namespace LiteralLinq.Expression.Design
 {
     /// <summary>
-    /// Provide a way of converting string to certain type, with optional formatter
+    /// Provide a way of converting string to object, with optional formatter
     /// </summary>
     public interface ILiteralConverter
     {
@@ -14,6 +14,16 @@ namespace LiteralLinq.Expression.Design
         /// <param name="formatter">string which indicate how to convert valueStr</param>
         /// <returns></returns>
         object Convert(string valueStr, string formatter);
+    }
+
+    /// <summary>
+    /// Provide a way of converting string to available types, with optional formatter
+    /// </summary>
+    public interface ILiteralGeneralConverter
+    {
+        bool CanConvert(Type targetType);
+
+        object Convert(Type targetType, string valueStr, string formatter);
     }
 
     /// <summary>
