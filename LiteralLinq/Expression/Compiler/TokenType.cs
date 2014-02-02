@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace LiteralLinq.Expression.Compiler
+﻿namespace LiteralLinq.Expression.Compiler
 {
-    public enum TokenType
+    internal enum TokenType
     {
         Undefined,
         PropertyOrField,

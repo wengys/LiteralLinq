@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LiteralLinq.Expression.Compiler.OrderBy
 {
     /// <summary>
     /// Token unit in OrderBy syntax.
     /// </summary>
-    public class OrderToken
+    internal class OrderToken
     {
         /// <summary>
         /// Key access path

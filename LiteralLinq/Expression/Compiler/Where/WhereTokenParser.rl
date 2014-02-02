@@ -228,7 +228,7 @@ using System.Text;
 
 namespace LiteralLinq.Expression.Compiler.Where
 {
-    public class WhereTokenParser
+    internal class WhereTokenParser
     {
        %%write data;
        public IEnumerable<WhereToken> Parse(string expression)

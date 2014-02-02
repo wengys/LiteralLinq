@@ -1,46 +1,51 @@
-﻿using System;
+﻿using LiteralLinq.Expression.Design;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Reflection;
 using Exp = System.Linq.Expressions;
 
 namespace LiteralLinq.Expression.Compiler.Where
 {
-    public class WhereCompiler
+    /// <summary>
+    /// Contains methods to complie string token to where expression
+    /// </summary>
+    internal class WhereCompiler
     {
         private Dictionary<Type, ILiteralConverter> _valueConverters;
+        private static readonly Type _nullableType = typeof(Nullable<>);
 
         public WhereCompiler(Dictionary<Type, ILiteralConverter> valueConverters)
         {
             _valueConverters = valueConverters;
         }
 
-        public Exp.Expression Compile<T>(IQueryable<T> source, IEnumerable<WhereToken> tokens)
+        public Exp.Expression Compile<T>(IQueryable<T> source, WhereToken[] tokens)
         {
             Type sourceType = typeof(T);
             var sourceExpression = Exp.Expression.Parameter(sourceType, "QableSource");
             Stack<Exp.Expression> buffer = new Stack<Exp.Expression>();
-
+            MemberInfo targetPathInfo = sourceType;
             var tokensCount = tokens.Count();
             for (int i = 0; i < tokensCount; i++)
             {
-                var token = tokens.ElementAt(i);
+                var token = tokens[i];
                 if (token.Type == WhereTokenType.MemberAccess)
                 {
-                    DispMemberAccess(sourceExpression, buffer, token);
+                    DispMemberAccess(sourceExpression, buffer, token, ref targetPathInfo);
                 }
                 else if (token.Type == WhereTokenType.Value || token.Type == WhereTokenType.ValueArray)
                 {
                     string formatter = null;
-                    if (tokens.ElementAt(i + 1).Type == WhereTokenType.Formatter)
+                    if (tokens[i + 1].Type == WhereTokenType.Formatter)//If has formatter, take it out
                     {
-                        formatter = tokens.ElementAt(++i).Tokens.Peek().TokenText;
+                        formatter = tokens[++i].Tokens.Peek().TokenText;
                     }
 
-                    DispValue(buffer, token, formatter);
-                    if (i + 1 < tokensCount && tokens.ElementAt(i + 1).Type != WhereTokenType.Operator)
+                    DispValue(buffer, token, formatter, buffer.Peek(), targetPathInfo);
+                    if (i + 1 < tokensCount && tokens[i + 1].Type != WhereTokenType.Operator)
                     {
-                        throw new SyntaxException(tokens.ElementAt(i + 1).Tokens.Peek().StartOffset, "Mission operator. Offset:{0}, near \"{1}\"", tokens.ElementAt(i + 1).Tokens.Peek().StartOffset, tokens.ElementAt(i + 1).Tokens.Peek().TokenText);
+                        throw new SyntaxException(tokens[i + 1].Tokens.Peek().StartOffset, "Mission operator. Offset:{0}, near \"{1}\"", tokens[i + 1].Tokens.Peek().StartOffset, tokens[i + 1].Tokens.Peek().TokenText);
                     }
                 }
                 else if (token.Type == WhereTokenType.Operator)
@@ -55,6 +60,49 @@ namespace LiteralLinq.Expression.Compiler.Where
                 Exp.Expression.Lambda(buffer.Peek(), sourceExpression));
         }
 
+        /// <summary>
+        /// Handle value tokens
+        /// </summary>
+        private void DispValue(Stack<Exp.Expression> buffer, WhereToken token, string formatter, Exp.Expression path, MemberInfo targetPathInfo)
+        {
+            var valueType = buffer.Peek().Type;
+            var actualType = valueType;
+            var isNullable = false;
+            GetActualType(ref actualType, ref isNullable);
+            GuardSetNullValueToNotNullableType(token, isNullable);
+            Exp.Expression value;
+
+            if (token.Type == WhereTokenType.ValueArray)
+            {
+                var valueExpressions = token.Tokens.Select(t => ConvertLiteralToValue(t, formatter, actualType, targetPathInfo));
+                if (isNullable && actualType.IsValueType)
+                {
+                    valueExpressions = valueExpressions.Select(ve => Exp.Expression.Convert(ve, valueType));
+                }
+                value = Exp.Expression.NewArrayInit(valueType, valueExpressions);
+            }
+            else
+            {
+                value = ConvertLiteralToValue(token.Tokens.Peek(), formatter, actualType, targetPathInfo);
+                if (isNullable && actualType.IsValueType)
+                {
+                    value = Exp.Expression.Convert(value, valueType);
+                }
+            }
+            buffer.Push(value);
+        }
+
+        /// <summary>
+        /// Handle path tokens
+        /// </summary>
+        private static void DispMemberAccess(Exp.ParameterExpression sourceExpression, Stack<Exp.Expression> buffer, WhereToken token, ref MemberInfo targetPathInfo)
+        {
+            buffer.Push(Util.BuildAccessExpression(sourceExpression, token.Tokens, ref targetPathInfo));
+        }
+
+        /// <summary>
+        /// Handle operator token
+        /// </summary>
         private void DispOper(Stack<Exp.Expression> buffer, WhereToken token)
         {
             switch (token.Tokens.Peek().TokenText.ToUpper())
@@ -113,7 +161,20 @@ namespace LiteralLinq.Expression.Compiler.Where
                     {
                         var rightValue = buffer.Pop();
                         var leftValue = buffer.Pop();
-                        Exp.Expression eqExpression = Exp.Expression.Equal(leftValue, rightValue);
+                        Exp.Expression eqExpression;
+                        if (leftValue.Type.IsValueType && leftValue.Type.GetMethod("op_Equality") == null)//If value type don't have == method, use Equals instead
+                        {
+                            eqExpression = Exp.Expression.Call(
+                                leftValue,
+                                "Equals",
+                                null,
+                                Exp.Expression.Convert(rightValue, typeof(object))
+                                );
+                        }
+                        else
+                        {
+                            eqExpression = Exp.Expression.Equal(leftValue, rightValue);
+                        }
                         buffer.Push(eqExpression);
                         break;
                     }
@@ -121,7 +182,20 @@ namespace LiteralLinq.Expression.Compiler.Where
                     {
                         var rightValue = buffer.Pop();
                         var leftValue = buffer.Pop();
-                        Exp.Expression neExpression = Exp.Expression.NotEqual(leftValue, rightValue);
+                        Exp.Expression neExpression;
+                        if (leftValue.Type.IsValueType && leftValue.Type.GetMethod("op_Inequality") == null)//If value type don't have != method, use Equals instead
+                        {
+                            neExpression = Exp.Expression.Not(Exp.Expression.Call(
+                                leftValue,
+                                "Equals",
+                                null,
+                                Exp.Expression.Convert(rightValue, typeof(object))
+                                ));
+                        }
+                        else
+                        {
+                            neExpression = Exp.Expression.NotEqual(leftValue, rightValue);
+                        }
                         buffer.Push(neExpression);
                         break;
                     }
@@ -203,41 +277,10 @@ namespace LiteralLinq.Expression.Compiler.Where
             }
         }
 
-        private void DispValue(Stack<Exp.Expression> buffer, WhereToken token, string formatter)
-        {
-            var valueType = buffer.Peek().Type;
-            var actualType = valueType;
-            var isNullable = false;
-            GetActualType(ref actualType, ref isNullable);
-            GuardIsNullValueAvailable(token, isNullable);
-            Exp.Expression value;
-
-            if (token.Type == WhereTokenType.ValueArray)
-            {
-                var valueExpressions = token.Tokens.Select(t => ConvertLiteralToValue(t, formatter, actualType));
-                if (isNullable && actualType.IsValueType)
-                {
-                    valueExpressions = valueExpressions.Select(ve => Exp.Expression.Convert(ve, valueType));
-                }
-                value = Exp.Expression.NewArrayInit(valueType, valueExpressions);
-            }
-            else
-            {
-                value = ConvertLiteralToValue(token.Tokens.Peek(), formatter, actualType);
-                if (isNullable && actualType.IsValueType)
-                {
-                    value = Exp.Expression.Convert(value, valueType);
-                }
-            }
-            buffer.Push(value);
-        }
-
-        private static void DispMemberAccess(Exp.ParameterExpression sourceExpression, Stack<Exp.Expression> buffer, WhereToken token)
-        {
-            buffer.Push(Util.BuildAccessExpression(sourceExpression, token.Tokens));
-        }
-
-        private Exp.Expression ConvertLiteralToValue(Token token, string formatter, Type valueType)
+        /// <summary>
+        /// Convert token to actual value
+        /// </summary>
+        private Exp.Expression ConvertLiteralToValue(Token token, string formatter, Type valueType, MemberInfo targetPathInfo)
         {
             if (token.TokenType == TokenType.Null)
             {
@@ -245,7 +288,20 @@ namespace LiteralLinq.Expression.Compiler.Where
             }
             else
             {
-                if (!_valueConverters.ContainsKey(valueType))
+                LiteralConverterAttribute converterAttr = null;
+                if (targetPathInfo != null)
+                {
+                    converterAttr = targetPathInfo.GetCustomAttributes(typeof(LiteralConverterAttribute), true).FirstOrDefault() as LiteralConverterAttribute;//Converter attribute set in property/method
+                }
+                if (converterAttr == null)
+                {
+                    converterAttr = valueType.GetCustomAttributes(typeof(LiteralConverterAttribute), true).FirstOrDefault() as LiteralConverterAttribute;//Converter attribute set in elementy type
+                }
+                if (converterAttr != null)
+                {
+                    return Exp.Expression.Constant(converterAttr.Converter.Convert(token.TokenText, formatter));
+                }
+                if (!_valueConverters.ContainsKey(valueType))//Check global converters
                 {
                     throw new SyntaxException(token.StartOffset, "No converter for type {0} registered", valueType);
                 }
@@ -253,7 +309,10 @@ namespace LiteralLinq.Expression.Compiler.Where
             }
         }
 
-        private static void GuardIsNullValueAvailable(WhereToken token, bool isNullable)
+        /// <summary>
+        /// Guard situations like following: int i=null
+        /// </summary>
+        private static void GuardSetNullValueToNotNullableType(WhereToken token, bool isNullable)
         {
             var firstNullValueToken = token.Tokens.FirstOrDefault(t => t.TokenType == TokenType.Null);
             if (!isNullable && firstNullValueToken.TokenType != TokenType.Undefined)
@@ -262,13 +321,16 @@ namespace LiteralLinq.Expression.Compiler.Where
             }
         }
 
+        /// <summary>
+        /// Get value's actual type (basically for Nullable type)
+        /// </summary>
         private static void GetActualType(ref Type valueType, ref bool isNullable)
         {
             if (valueType.IsClass)
             {
                 isNullable = true;
             }
-            else if (valueType.IsGenericType && valueType.GetGenericTypeDefinition().FullName == "System.Nullable`1")
+            else if (valueType.IsGenericType && valueType.GetGenericTypeDefinition() == _nullableType)
             {
                 valueType = valueType.GetGenericArguments()[0];
                 isNullable = true;

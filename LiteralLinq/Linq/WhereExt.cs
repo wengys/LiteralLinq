@@ -1,11 +1,10 @@
 ﻿using LiteralLinq.Expression;
-using LiteralLinq.Expression.Compiler;
 using LiteralLinq.Expression.Compiler.PredefinedConverter;
 using LiteralLinq.Expression.Compiler.Where;
+using LiteralLinq.Expression.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LiteralLinq.Linq
 {
@@ -41,7 +40,7 @@ namespace LiteralLinq.Linq
             }
             WhereCompiler wc = new WhereCompiler(_converters);
             WhereTokenParser wtp = new WhereTokenParser();
-            var whereExpression = wc.Compile(source, wtp.Parse(exp));
+            var whereExpression = wc.Compile(source, wtp.Parse(exp).ToArray());
             return (IQueryable<T>)source.Provider.CreateQuery<T>(whereExpression);
         }
     }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LiteralLinq.Expression.Design;
+using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace LiteralLinq.Expression.Compiler.PredefinedConverter
 {
@@ -90,6 +88,10 @@ namespace LiteralLinq.Expression.Compiler.PredefinedConverter
     {
         public object Convert(string valueStr, string formatter)
         {
+            if (string.IsNullOrEmpty(formatter))
+            {
+                formatter = "yyyy-MM-dd";
+            }
             return DateTime.ParseExact(valueStr, formatter, CultureInfo.InvariantCulture);
         }
     }

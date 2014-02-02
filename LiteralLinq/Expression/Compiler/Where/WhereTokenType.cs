@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace LiteralLinq.Expression.Compiler.Where
+﻿namespace LiteralLinq.Expression.Compiler.Where
 {
-    public enum WhereTokenType
+    internal enum WhereTokenType
     {
         MemberAccess,
         Value,

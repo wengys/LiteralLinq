@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LiteralLinq.Expression.Compiler.Where
 {
-    public static class WhereOperatorTable
+    /// <summary>
+    /// Indicate priority of operators
+    /// </summary>
+    internal static class WhereOperatorTable
     {
         private static readonly System.Collections.Generic.Dictionary<string, int> OperatorPriorities = new Dictionary<string, int> {
             { "EQ",1},

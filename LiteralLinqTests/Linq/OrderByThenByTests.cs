@@ -40,11 +40,39 @@ namespace LiteralLinq.Linq.Tests
             new MasterData{Id=4,Price=5.2,Quantity=4,Detail=new DetailData{Rank=1}},
         }.AsQueryable();
 
+        /// <summary>
+        /// This test shows how to sort a simple value type collection (such as an int collection)
+        /// </summary>
+        [TestMethod]
+        [TestCategory("OrderBy")]
+        public void OrderBySelfTest()
+        {
+            var rnd = new Random();
+            var source2 = (new[]{
+                rnd.Next(100),
+                rnd.Next(100),
+                rnd.Next(100),
+                rnd.Next(100),
+                rnd.Next(100)
+            }).AsQueryable();
+            var ascending1 = source2.OrderBy("it");//Just use "it" to represent a value in a collection, use default ascending order
+            var ascending2 = source2.OrderBy("it asc");//Just use "it" to represent a value in a collection, use explicit ascending order
+
+            var descending = source2.OrderBy("it desc");//Descending order
+
+            CollectionAssert.AreEqual(source2.OrderBy(it => it).ToArray(), ascending1.ToArray());
+            CollectionAssert.AreEqual(source2.OrderBy(it => it).ToArray(), ascending2.ToArray());
+            CollectionAssert.AreEqual(source2.OrderByDescending(it => it).ToArray(), descending.ToArray());
+        }
+
+        /// <summary>
+        /// This test shows how to sort a complex type collection by one of it's property
+        /// </summary>
         [TestMethod()]
         [TestCategory("OrderBy")]
         public void OrderByOnePropertyTest()
         {
-            var actual = source.OrderBy(" it.Id ");
+            var actual = source.OrderBy(" it.Id ");//Order By Id field,
             var expected = source.OrderBy(it => it.Id);
             CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
 
@@ -53,28 +81,40 @@ namespace LiteralLinq.Linq.Tests
             CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
         }
 
+        /// <summary>
+        /// This test shows how to sort by sub Property or parameterless function
+        /// </summary>
         [TestMethod()]
         [TestCategory("OrderBy")]
-        public void OrderByComplexPropertyTest()
+        public void OrderByComplexPathTest()
+        {
+            var actual1 = source.OrderBy(" it.Detail.Rank desc ");//Sort by Detail.Rank property, descending order
+            var expected1 = source.OrderByDescending(it => it.Detail.Rank);
+            CollectionAssert.AreEqual(expected1.ToArray(), actual1.ToArray());
+
+            var actual2 = source.OrderBy(" it.TotalPrice() ");//Sort by a parameterless function
+            var expected2 = source.OrderBy(it => it.TotalPrice());
+            CollectionAssert.AreEqual(expected2.ToArray(), actual2.ToArray());
+        }
+
+        /// <summary>
+        /// This test shows how to sort by multiple paths in one query
+        /// </summary>
+        [TestMethod()]
+        [TestCategory("OrderBy")]
+        public void OrderByMultiplePathsTest()
         {
             var actual = source.OrderBy(" it.Detail.Rank desc,it.TotalPrice() ");
             var expected = source.OrderByDescending(it => it.Detail.Rank).ThenBy(it => it.TotalPrice());
             CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
         }
 
+        /// <summary>
+        /// This test shows how to perform a subsequent sorting
+        /// </summary>
         [TestMethod()]
         [TestCategory("OrderBy")]
-        public void OrderBySelfTest()
-        {
-            var source2 = (new int[] { 3, 2, 1, 4 }).AsQueryable();
-            var actual = source2.OrderBy(" it desc ");
-            var expected = source2.OrderByDescending(it => it);
-            CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
-        }
-
-        [TestMethod()]
-        [TestCategory("OrderBy")]
-        public void ThenByComplexPropertyTest()
+        public void ThenByTest()
         {
             var actual = source.OrderByDescending(it => it.Detail.Rank).ThenBy(" it.TotalPrice() desc");
             var expected = source.OrderByDescending(it => it.Detail.Rank).ThenByDescending(it => it.TotalPrice());

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LiteralLinq.Expression.Compiler.OrderBy
 {
-    public class OrderByTokenCollection
+    internal class OrderByTokenCollection
     {
         public Queue<OrderToken> OrderTokens { get; set; }
 

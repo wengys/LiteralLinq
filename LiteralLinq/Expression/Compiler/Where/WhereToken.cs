@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LiteralLinq.Expression.Compiler.Where
 {
-    public class WhereToken
+    /// <summary>
+    /// Token unit in Where syntax.
+    /// </summary>
+    internal class WhereToken
     {
         public Queue<Token> Tokens { get; private set; }
 

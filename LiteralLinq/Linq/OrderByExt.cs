@@ -1,9 +1,6 @@
 ﻿using LiteralLinq.Expression;
 using LiteralLinq.Expression.Compiler.OrderBy;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LiteralLinq.Linq
 {
@@ -13,7 +10,7 @@ namespace LiteralLinq.Linq
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
-                throw new SyntaxException(-1, "Condition empty.");
+                throw new SyntaxException(-1, "Syntax empty.");
             }
             OrderByTokenParser parser = new OrderByTokenParser();
             OrderByCompiler cpir = new OrderByCompiler();

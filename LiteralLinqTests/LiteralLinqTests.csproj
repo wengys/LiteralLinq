@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -52,7 +53,11 @@
   <ItemGroup>
     <Compile Include="Expression\Compiler\OrderBy\OrderByTokenParserTests.cs" />
     <Compile Include="Expression\Compiler\Where\WhereTokenParserTests.cs" />
+    <Compile Include="Linq\Util\LLPointConverter2.cs" />
+    <Compile Include="Linq\Util\LLPointConverter.cs" />
     <Compile Include="Linq\OrderByThenByTests.cs" />
+    <Compile Include="Linq\Util\GeoPoint2.cs" />
+    <Compile Include="Linq\Util\GeoPoint.cs" />
     <Compile Include="Linq\WhereExtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

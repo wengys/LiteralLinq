@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace LiteralLinq.Expression.Compiler
+﻿namespace LiteralLinq.Expression.Compiler
 {
     /// <summary>
     /// Store single token string and related metadata.
     /// </summary>
-    public struct Token
+    internal struct Token
     {
         /// <summary>
         /// Token text

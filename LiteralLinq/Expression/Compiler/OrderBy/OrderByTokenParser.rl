@@ -103,7 +103,7 @@ using System.Text;
 
 namespace LiteralLinq.Expression.Compiler.OrderBy
 {
-	public class OrderByTokenParser{
+	internal class OrderByTokenParser{
 
 		%%write data;
 
