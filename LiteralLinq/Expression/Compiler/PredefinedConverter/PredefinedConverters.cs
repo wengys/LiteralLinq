@@ -1,9 +1,18 @@
 ﻿using LiteralLinq.Expression.Design;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace LiteralLinq.Expression.Compiler.PredefinedConverter
 {
+    internal class ByteConverter : ILiteralConverter
+    {
+        public object Convert(string valueStr, string formatter)
+        {
+            return byte.Parse(valueStr);
+        }
+    }
+
     internal class Int16Converter : ILiteralConverter
     {
         public object Convert(string valueStr, string formatter)
@@ -25,6 +34,14 @@ namespace LiteralLinq.Expression.Compiler.PredefinedConverter
         public object Convert(string valueStr, string formatter)
         {
             return Int64.Parse(valueStr);
+        }
+    }
+
+    internal class SbyteConverter : ILiteralConverter
+    {
+        public object Convert(string valueStr, string formatter)
+        {
+            return sbyte.Parse(valueStr);
         }
     }
 
@@ -81,6 +98,22 @@ namespace LiteralLinq.Expression.Compiler.PredefinedConverter
         public object Convert(string valueStr, string formatter)
         {
             return valueStr;
+        }
+    }
+
+    internal class CharConverter : ILiteralConverter
+    {
+        public object Convert(string valueStr, string formatter)
+        {
+            return valueStr.ToCharArray().FirstOrDefault();
+        }
+    }
+
+    internal class BooleanConverter : ILiteralConverter
+    {
+        public object Convert(string valueStr, string formatter)
+        {
+            return bool.Parse(valueStr);
         }
     }
 

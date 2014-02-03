@@ -25,9 +25,11 @@ namespace LiteralLinq.Linq
 
         static WhereExt()
         {
+            _converters.RegistConverter(typeof(byte), new ByteConverter());
             _converters.RegistConverter(typeof(Int16), new Int16Converter());
             _converters.RegistConverter(typeof(Int32), new Int32Converter());
             _converters.RegistConverter(typeof(Int64), new Int64Converter());
+            _converters.RegistConverter(typeof(sbyte), new SbyteConverter());
             _converters.RegistConverter(typeof(UInt16), new UInt16Converter());
             _converters.RegistConverter(typeof(UInt32), new UInt32Converter());
             _converters.RegistConverter(typeof(UInt64), new UInt64Converter());
@@ -36,6 +38,8 @@ namespace LiteralLinq.Linq
             _converters.RegistConverter(typeof(decimal), new DecimalConverter());
             _converters.RegistConverter(typeof(string), new StringConverter());
             _converters.RegistConverter(typeof(DateTime), new DateTimeConverter());
+            _converters.RegistConverter(typeof(char), new CharConverter());
+            _converters.RegistConverter(typeof(bool), new BooleanConverter());
             _converters.RegistConverter(new EnumConverter());
         }
 

@@ -31,5 +31,15 @@ namespace LiteralLinq.Linq.Tests
         {
             return !(a.X == b.X && a.Y == b.Y && a.Z == b.Z);
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
     }
 }
