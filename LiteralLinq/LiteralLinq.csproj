@@ -79,8 +79,6 @@
     <Compile Include="Linq\WhereExt.cs" />
     <Compile Include="LiteralLinqSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spec\ISpecification.cs" />
-    <Compile Include="Spec\LiteralSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

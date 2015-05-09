@@ -20,22 +20,7 @@ namespace LiteralLinq.Expression.Compiler.Where
             _valueConverters = valueConverters;
         }
 
-        public Exp.Expression Compile<T>(IQueryable<T> source, string exp)
-        {
-            var lambdaExp = CompileToLambdaExpression<T>(exp);
-            return Exp.Expression.Call(typeof(Queryable),
-                "Where",
-                new[] { typeof(T) },
-                source.Expression,
-                lambdaExp);
-        }
-
-        public Exp.Expression Compile<T>(string exp)
-        {
-            return CompileToLambdaExpression<T>(exp);
-        }
-
-        private Exp.LambdaExpression CompileToLambdaExpression<T>(string exp)
+        public Exp.Expression<Func<T, bool>> Compile<T>(string exp)
         {
             WhereTokenParser wtp = new WhereTokenParser();
             var tokens = wtp.Parse(exp).ToArray();
@@ -71,7 +56,7 @@ namespace LiteralLinq.Expression.Compiler.Where
                 }
             }
             var lambdaExp = Exp.Expression.Lambda(buffer.Peek(), sourceExpression);
-            return lambdaExp;
+            return (Exp.Expression<Func<T, bool>>)lambdaExp;
         }
 
         /// <summary>

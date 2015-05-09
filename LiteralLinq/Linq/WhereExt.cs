@@ -6,6 +6,7 @@ using LiteralLinq.Expression.Design;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exp = System.Linq.Expressions;
 
 namespace LiteralLinq.Linq
 {
@@ -13,29 +14,21 @@ namespace LiteralLinq.Linq
     {
         private static ValueConverterCollection _converters = ValueConverterCollection.Instance;
 
-        //public static void RegistConverter<T>(ILiteralConverter converter)
-        //{
-        //    _converters.RegistConverter(typeof(T), converter);
-        //}
-
-        //public static void RegistConverter(ILiteralGeneralConverter converter)
-        //{
-        //    _converters.RegistConverter(converter);
-        //}
-
-        static WhereExt()
+        public static IQueryable<T> Where<T>(this IQueryable<T> source, string exp)
         {
+            var filter = WhereExt.CreateFilter<T>(exp);
+            return source.Where(filter);
         }
 
-        public static IQueryable<T> Where<T>(this IQueryable<T> source, string exp)
+        public static Exp.Expression<Func<T, bool>> CreateFilter<T>(string exp)
         {
             if (string.IsNullOrWhiteSpace(exp))
             {
                 throw new SyntaxException(-1, "Syntax empty.");
             }
             WhereCompiler wc = new WhereCompiler(_converters);
-            var whereExpression = wc.Compile(source, exp);
-            return (IQueryable<T>)source.Provider.CreateQuery<T>(whereExpression);
+            var whereExpression = wc.Compile<T>(exp);
+            return whereExpression;
         }
     }
 }
