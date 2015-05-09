@@ -29,11 +29,15 @@
 
 个人严重推荐使用前先把示例代码看遍。
 
-#已实现功能
+#已实现的扩展方法
 
 1. OrderBy：通过字符串进行排序。
 2. ThenBy
 3. Where：通过字符串进行筛选。
+
+#已实现的静态方法
+
+1. Where.CreateFilter：创建过滤表达式树（Expression）
 
 ##OrderBy
 

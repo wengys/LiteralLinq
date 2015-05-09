@@ -268,7 +268,7 @@ namespace LiteralLinq.Linq.Tests
         }
 
         /// <summary>
-        /// This test shows how to create filter Expression
+        /// This test shows how to create filter expression
         /// </summary>
         [TestMethod]
         [TestCategory("WhereFilter")]

@@ -28,11 +28,15 @@ Attention: Unlucky certain functions may not supported by all IQueryable provide
 
 Read Examples first is recommended.
 
-#Implemented Functions
+#Implemented Extension Functions
 
 1. OrderBy: Use string expression to order a sequence.
 2. ThenBy
 3. Where: Filtering sequence with string expression.
+
+#Implemented Static Functions
+
+1. Where.CreateFilter: Create filter expression.
 
 ##OrderBy
 
