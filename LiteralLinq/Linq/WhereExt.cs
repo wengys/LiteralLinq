@@ -11,36 +11,20 @@ namespace LiteralLinq.Linq
 {
     public static class WhereExt
     {
-        private static ValueConverterCollection _converters = new ValueConverterCollection();
+        private static ValueConverterCollection _converters = ValueConverterCollection.Instance;
 
-        public static void RegistConverter<T>(ILiteralConverter converter)
-        {
-            _converters.RegistConverter(typeof(T), converter);
-        }
+        //public static void RegistConverter<T>(ILiteralConverter converter)
+        //{
+        //    _converters.RegistConverter(typeof(T), converter);
+        //}
 
-        public static void RegistConverter(ILiteralGeneralConverter converter)
-        {
-            _converters.RegistConverter(converter);
-        }
+        //public static void RegistConverter(ILiteralGeneralConverter converter)
+        //{
+        //    _converters.RegistConverter(converter);
+        //}
 
         static WhereExt()
         {
-            _converters.RegistConverter(typeof(byte), new ByteConverter());
-            _converters.RegistConverter(typeof(Int16), new Int16Converter());
-            _converters.RegistConverter(typeof(Int32), new Int32Converter());
-            _converters.RegistConverter(typeof(Int64), new Int64Converter());
-            _converters.RegistConverter(typeof(sbyte), new SbyteConverter());
-            _converters.RegistConverter(typeof(UInt16), new UInt16Converter());
-            _converters.RegistConverter(typeof(UInt32), new UInt32Converter());
-            _converters.RegistConverter(typeof(UInt64), new UInt64Converter());
-            _converters.RegistConverter(typeof(float), new FloatConverter());
-            _converters.RegistConverter(typeof(double), new DoubleConverter());
-            _converters.RegistConverter(typeof(decimal), new DecimalConverter());
-            _converters.RegistConverter(typeof(string), new StringConverter());
-            _converters.RegistConverter(typeof(DateTime), new DateTimeConverter());
-            _converters.RegistConverter(typeof(char), new CharConverter());
-            _converters.RegistConverter(typeof(bool), new BooleanConverter());
-            _converters.RegistConverter(new EnumConverter());
         }
 
         public static IQueryable<T> Where<T>(this IQueryable<T> source, string exp)
@@ -50,8 +34,7 @@ namespace LiteralLinq.Linq
                 throw new SyntaxException(-1, "Syntax empty.");
             }
             WhereCompiler wc = new WhereCompiler(_converters);
-            WhereTokenParser wtp = new WhereTokenParser();
-            var whereExpression = wc.Compile(source, wtp.Parse(exp).ToArray());
+            var whereExpression = wc.Compile(source, exp);
             return (IQueryable<T>)source.Provider.CreateQuery<T>(whereExpression);
         }
     }

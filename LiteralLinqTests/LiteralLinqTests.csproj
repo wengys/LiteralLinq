@@ -60,6 +60,7 @@
     <Compile Include="Linq\Util\GeoPoint.cs" />
     <Compile Include="Linq\WhereExtTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spec\SpecificationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LiteralLinq\LiteralLinq.csproj">

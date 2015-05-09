@@ -260,7 +260,7 @@ namespace LiteralLinq.Linq.Tests
         [TestCategory("Where")]
         public void WhereCustomConverterInGlobalTest()
         {
-            WhereExt.RegistConverter<GeoPoint>(new LLPointConverter());//Regist global converter
+            LiteralLinqSettings.RegistConverter<GeoPoint>(new LLPointConverter());//Regist global converter
             var source2 = (new[] { new GeoPoint(1, 1, 1), new GeoPoint(2, 2, 2) }).AsQueryable();
             var actual = source2.Where(s => s == (new GeoPoint(1, 1, 1)));
             var expeced = source2.Where("it <eq> '1,1,1'");

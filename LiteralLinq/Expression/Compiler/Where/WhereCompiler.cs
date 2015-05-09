@@ -20,8 +20,25 @@ namespace LiteralLinq.Expression.Compiler.Where
             _valueConverters = valueConverters;
         }
 
-        public Exp.Expression Compile<T>(IQueryable<T> source, WhereToken[] tokens)
+        public Exp.Expression Compile<T>(IQueryable<T> source, string exp)
         {
+            var lambdaExp = CompileToLambdaExpression<T>(exp);
+            return Exp.Expression.Call(typeof(Queryable),
+                "Where",
+                new[] { typeof(T) },
+                source.Expression,
+                lambdaExp);
+        }
+
+        public Exp.Expression Compile<T>(string exp)
+        {
+            return CompileToLambdaExpression<T>(exp);
+        }
+
+        private Exp.LambdaExpression CompileToLambdaExpression<T>(string exp)
+        {
+            WhereTokenParser wtp = new WhereTokenParser();
+            var tokens = wtp.Parse(exp).ToArray();
             Type sourceType = typeof(T);
             var sourceExpression = Exp.Expression.Parameter(sourceType, "QableSource");
             Stack<Exp.Expression> buffer = new Stack<Exp.Expression>();
@@ -53,11 +70,8 @@ namespace LiteralLinq.Expression.Compiler.Where
                     DispOper(buffer, token);
                 }
             }
-            return Exp.Expression.Call(typeof(Queryable),
-                "Where",
-                new[] { typeof(T) },
-                source.Expression,
-                Exp.Expression.Lambda(buffer.Peek(), sourceExpression));
+            var lambdaExp = Exp.Expression.Lambda(buffer.Peek(), sourceExpression);
+            return lambdaExp;
         }
 
         /// <summary>
@@ -197,7 +211,7 @@ namespace LiteralLinq.Expression.Compiler.Where
                         //else
                         //{
                         neExpression = Exp.Expression.NotEqual(leftValue, rightValue);
-                        //  }
+                        // }
                         buffer.Push(neExpression);
                         break;
                     }
