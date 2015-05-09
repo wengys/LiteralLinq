@@ -254,7 +254,7 @@ namespace LiteralLinq.Linq.Tests
         }
 
         /// <summary>
-        /// This test shows global custom converter
+        /// This test shows global custom converter usage
         /// </summary>
         [TestMethod()]
         [TestCategory("Where")]
@@ -265,6 +265,25 @@ namespace LiteralLinq.Linq.Tests
             var actual = source2.Where(s => s == (new GeoPoint(1, 1, 1)));
             var expeced = source2.Where("it <eq> '1,1,1'");
             CollectionAssert.AreEqual(expeced.ToArray(), actual.ToArray());
+        }
+
+        /// <summary>
+        /// This test shows how to create filter Expression
+        /// </summary>
+        [TestMethod]
+        [TestCategory("WhereFilter")]
+        public void WhereFilterCreateTest()
+        {
+            var model = new DetailData2
+            {
+                Quantity = 10
+            };
+
+            var filter = WhereExt.CreateFilter<DetailData2>("it.Quantity <EQ> '10'");
+            var isSatisfied = filter.Compile()(model);
+            Assert.AreEqual(true, isSatisfied);
+            var specExp2 = WhereExt.CreateFilter<DetailData2>("it <EQ> null");
+            Assert.AreEqual(false, specExp2.Compile()(model));
         }
     }
 }
